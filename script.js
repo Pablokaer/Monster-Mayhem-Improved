@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let monstersKilled = 0;
   let traps = [];
   let powerups = [];
+  let attackMode = null;
 
   // UI Elements
   const turnInfo = document.getElementById("turn-info");
@@ -291,10 +292,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentMode === "melee" && hexagon.classList.contains("attack-range")) {
       const monster = hexagon.querySelector(".monster");
       if (monster) {
-        attackMonster(row, col);
+        attackMode = "melee";
+        attackMonster(row, col, attackMode);
         actionsRemaining--;
         updateUI();
         clearHighlights();
+
         currentMode = null;
         // attackOptions.style.display = 'none';
         return;
@@ -308,11 +311,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       const monster = hexagon.querySelector(".monster");
       if (monster) {
-        attackMonster(row, col);
+        attackMode = "ranged";
+        attackMonster(row, col, attackMode);
         actionsRemaining--;
         updateUI();
         clearHighlights();
         currentMode = null;
+
         // attackOptions.style.display = 'none';
         return;
       }
@@ -382,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Attacks a monster with explosion animation
-  function attackMonster(row, col) {
+  function attackMonster(row, col, attackMode) {
     const monsterIndex = monsters.findIndex(
       (m) => m.row === row && m.col === col
     );
@@ -417,10 +422,11 @@ document.addEventListener("DOMContentLoaded", () => {
         killedMonster = true;
 
         // 🎯 Sorteio de ação extra apenas se foi um ataque melee
-        if (killedMonster) {
+        if (killedMonster && attackMode === "melee") {
           const chance = Math.random();
           if (chance <= 0.3) {
             actionsRemaining += 1;
+            updateUI();
             console.log(
               "🎲 Sorte! Você ganhou uma ação extra por ataque físico!"
             );
