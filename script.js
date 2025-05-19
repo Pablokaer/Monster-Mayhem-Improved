@@ -259,10 +259,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const col = parseInt(hexagon.dataset.col);
 
     // If clicking on a powerup
-    if (hexagon.classList.contains("powerup")) {
-      collectPowerup(row, col);
-      return;
-    }
+    // if (hexagon.classList.contains("powerup")) {
+    //   collectPowerup(row, col);
+    //   return;
+    // }
 
     if (actionsRemaining <= 0) return;
 
