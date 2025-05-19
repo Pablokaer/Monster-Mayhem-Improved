@@ -450,12 +450,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Math.random() > chanceToDrop) return;
 
     const powerupItems = [
-      { src: "img/itens/Golden_Boots.gif", type: "extra_actions", chance: 0.3 },
+      {
+        src: "img/itens/Golden_Boots.gif",
+        type: "extra_actions",
+        chance: 0.25,
+      },
       { src: "img/itens/Armor1.gif", type: "armor", chance: 0.2 },
-      { src: "img/itens/Helmet1.gif", type: "helmet", chance: 0.05 },
-      { src: "img/itens/Helmet2.gif", type: "helmet", chance: 0.05 },
-      { src: "img/itens/Legs1.gif", type: "legs", chance: 0.1 },
-      { src: "img/itens/Shield1.gif", type: "shield", chance: 0.1 },
+      { src: "img/itens/Helmet1.gif", type: "helmet", chance: 0.1 },
+      { src: "img/itens/Helmet2.gif", type: "helmet", chance: 0.1 },
+      { src: "img/itens/Legs1.gif", type: "legs", chance: 0.2 },
+      { src: "img/itens/Shield1.gif", type: "shield", chance: 0.05 },
       { src: "img/itens/Shield2.gif", type: "shield", chance: 0.05 },
       { src: "img/itens/Shield3.gif", type: "shield", chance: 0.05 },
     ];
@@ -509,6 +513,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add extra action
       if (powerup.type === "shield") {
         actionsRemaining += 6;
+      } else if (powerup.type === "legs" || powerup.type === "armor") {
+        actionsRemaining += 3;
+      } else if (powerup.type === "helmet") {
+        actionsRemaining += 4;
       } else {
         actionsRemaining += 2;
       }
