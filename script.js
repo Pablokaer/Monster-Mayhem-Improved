@@ -386,6 +386,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const monsterIndex = monsters.findIndex(
       (m) => m.row === row && m.col === col
     );
+
+    let killedMonster = false;
+
     if (monsterIndex !== -1) {
       const monster = monsters[monsterIndex];
       const hexagon = document.querySelector(
@@ -410,6 +413,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         monstersKilled++;
         statsInfo.textContent = `Monsters killed: ${monstersKilled}`;
+
+        killedMonster = true;
+
+        // 🎯 Sorteio de ação extra apenas se foi um ataque melee
+        if (killedMonster) {
+          const chance = Math.random();
+          if (chance <= 0.3) {
+            actionsRemaining += 1;
+            console.log(
+              "🎲 Sorte! Você ganhou uma ação extra por ataque físico!"
+            );
+          }
+        }
 
         // Drop a powerup item
         dropPowerup(row, col);
@@ -773,16 +789,6 @@ document.addEventListener("DOMContentLoaded", () => {
           attackHex.classList.add("attack-range");
           foundMonster = true;
         }
-      }
-    }
-
-    // If you killed a monster using melee
-    if (foundMonster) {
-      const chance = Math.random(); // retorna número entre 0 e 1
-      if (chance <= 0.3) {
-        console.log("🎲 Sorte! Você ganhou uma ação extra!");
-        actionsRemaining = actionsRemaining + 1;
-        player.extraAction = true; // exemplo
       }
     }
   }
