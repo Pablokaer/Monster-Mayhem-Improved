@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monster Mayhem</title>
+
+    <!-- Link to external CSS stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Retro-style pixel font for game UI -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="zoom-wrapper">
+      <!-- Start screen with logo and start button -->
+      <div id="start-screen">
+        <img src="img/tibia_logo.png" alt="Game Logo" id="game-logo" />
+        <button id="start-button">Start</button>
+      </div>
+
+      <!-- Game header with logo, turn counter, and stats -->
+      <div id="game-header">
+        <img
+          src="img/tibia_logo.png"
+          alt="Monster Mayhem"
+          style="width: auto; height: 60px"
+        />
+        <div id="turn-info">Turn: 1 | Actions remaining: 2</div>
+        <div id="stats">Monsters killed: 0</div>
+      </div>
+
+      <!-- Control panel with movement and attack options -->
+      <div id="controls">
+        <button id="move-btn" disabled>Move</button>
+        <button id="attack-btn" disabled>Attack</button>
+        <p class="attack-title">Choose your Attack:</p>
+        <button id="trap-btn">Trap</button>
+        <button id="ranged-btn">Long Range</button>
+        <button id="melee-btn">Melee</button>
+        <button id="end-turn-btn">Skip Turn</button>
+      </div>
+
+      <!-- Spacer for layout purposes -->
+      <div id="spacer"></div>
+
+      <!-- Game board container -->
+      <div id="game-container">
+        <div id="hex-grid"></div>
+      </div>
+
+      <!-- Game over screen with restart option -->
+      <div id="game-over">
+        <h2>Game Over!</h2>
+        <p>Monsters killed: <span id="final-score">0</span></p>
+        <button id="restart-btn">Play Again</button>
+      </div>
+
+      <!-- Instructions and gameplay tips -->
+      <div id="info-screen">
+        <div class="message">
+          <h2>How to Play</h2>
+          <ul>
+            <li>
+              ⚔️ <strong>Melee</strong> attacks have a 30% chance to grant an
+              extra action.
+            </li>
+            <li>🏃 You have <strong>2 actions per turn</strong>.</li>
+            <li>🧨 Traps kill monsters automatically.</li>
+            <li>🥾 Items provide 2 extra actions.</li>
+            <li>👹 Monsters move or attack after your actions are spent.</li>
+            <li>⏳ Every 5 turns, more monsters spawn after kills.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript game logic -->
+    <script src="script.js"></script>
+  </body>
+</html>
