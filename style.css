@@ -170,6 +170,8 @@ button:hover {
 
 .hexagon:hover,
 .hexagon.selected {
+  background-color: #3498db;
+  opacity: 75;
   transform: scale(1.05);
   z-index: 5;
 }
